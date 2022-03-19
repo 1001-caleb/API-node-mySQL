@@ -23,3 +23,24 @@ connection.connect(error =>{
 });
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));  
 
+//Routing
+app.get("/", (req, res) =>{
+    res.send("Welcome to api");
+});
+
+//listar todo
+app.get("/listar", (req, res) =>{
+    const sql = "SELECT * FROM customers";
+
+    connection.query(sql, (error, results)=>{
+        if (error) throw error;
+        if(results.length > 0){
+            res.json(results);
+        } else {
+            res.send('Not result');
+          }
+    });
+}) 
+
+//consultar por id
+app.get("")

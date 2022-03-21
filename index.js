@@ -56,3 +56,18 @@ app.get("/listar/:id", (req, res) =>{
           }
     })
 });
+
+//agregar nuevo a la lista
+app.post("/add", (req, res)=>{
+    const sql = "INSERT INTO customers SET ?";
+
+    const addObj ={
+        name: req.body.name,
+        city: req.body.city
+    };
+    connection.query(sql, addObj, error => {
+        if (error) throw error;
+        res.send('Customer created!');
+    });
+
+});

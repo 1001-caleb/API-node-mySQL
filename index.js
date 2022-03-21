@@ -43,4 +43,16 @@ app.get("/listar", (req, res) =>{
 }) 
 
 //consultar por id
-app.get("")
+app.get("/listar/:id", (req, res) =>{
+    const { id } = req.params;
+    const sql = `SELECT * FROM customers WHERE id = ${id}`
+
+    connection.query(sql, (error, results)=>{
+        if (error) throw error;
+        if (results.length > 0){
+            res.json(results);
+        }else {
+            res.send('Not result');
+          }
+    })
+});

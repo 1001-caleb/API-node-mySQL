@@ -71,3 +71,15 @@ app.post("/add", (req, res)=>{
     });
 
 });
+
+//actualizar
+app.put('/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, city } = req.body;
+    const sql = `UPDATE customers SET name = '${name}', city='${city}' WHERE id =${id}`;
+  
+    connection.query(sql, error => {
+      if (error) throw error;
+      res.send('Customer updated!');
+    });
+  });
